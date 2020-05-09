@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Buffers;
+using System.Buffers.Binary;
 using System.IO;
 using System.Text;
 
@@ -244,15 +245,12 @@ namespace IronSnappy
 
       static uint Load32(ReadOnlySpan<byte> b, int i)
       {
-         b = b.Slice(i, 4); // Help the compiler eliminate bounds checks on the next line.
-         return (uint)(b[0]) | ((uint)(b[1]) << 8) | ((uint)(b[2]) << 16) | ((uint)(b[3]) << 24);
+         return BinaryPrimitives.ReadUInt32LittleEndian(b.Slice(i, 4));
       }
 
       static ulong Load64(ReadOnlySpan<byte> b, int i)
       {
-         b = b.Slice(i, 8); // Help the compiler eliminate bounds checks on the next line.
-         return (ulong)(b[0]) | (ulong)(b[1]) << 8 | (ulong)(b[2]) << 16 | (ulong)(b[3]) << 24 |
-            (ulong)(b[4]) << 32 | (ulong)(b[5]) << 40 | (ulong)(b[6]) << 48 | (ulong)(b[7]) << 56;
+         return BinaryPrimitives.ReadUInt64LittleEndian(b.Slice(i, 8));
       }
 
       static uint Hash(uint u, int shift)
