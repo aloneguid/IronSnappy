@@ -20,7 +20,7 @@ pr:
       - doc/**/*
 
 variables:
-  v.prefix: '1.1.0'
+  v.prefix: '1.2.0'
   vmImage: 'ubuntu-latest'
 
 stages:
