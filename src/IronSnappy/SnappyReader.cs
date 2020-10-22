@@ -46,10 +46,20 @@ namespace IronSnappy
          {
             if(_i < _j)
             {
-               throw new NotImplementedException();
+               // Number of bytes to copy.
+               int n = Math.Min(_j - _i, count);
+               _decoded.AsSpan(_i, n).CopyTo(buffer.AsSpan(offset, n));
+               _i += n;
+               return n;
             }
 
-            if(4 != _parent.Read(_buf, 0, 4))
+            int chunkHeaderBytes = _parent.Read(_buf, 0, 4);
+            if(chunkHeaderBytes == 0 && _readHeader == true)
+            {
+               // end of file reached.
+               return 0;
+            }
+            if(4 != chunkHeaderBytes)
             {
                throw new IOException("corrupt input");
             }
