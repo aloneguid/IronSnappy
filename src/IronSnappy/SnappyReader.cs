@@ -109,7 +109,7 @@ namespace IronSnappy
                   _j = n;
                }
 
-               break;
+               continue;
 
 
                case Snappy.ChunkTypeUncompressedData:
@@ -142,7 +142,7 @@ namespace IronSnappy
                   _i = 0;
                   _j = n;
                }
-               break;
+               continue;
 
 
                case Snappy.ChunkTypeStreamIdentifier:
@@ -163,7 +163,7 @@ namespace IronSnappy
                      }
                   }
                }
-               break;
+               continue;
 
             }
 
