@@ -149,7 +149,7 @@ namespace IronSnappy
 
             if(chunkType == Snappy.ChunkTypeUncompressedData)
             {
-               Spans.Write(_parent, compressed);
+               Spans.Write(_parent, uncompressed);
             }
          }
       }
