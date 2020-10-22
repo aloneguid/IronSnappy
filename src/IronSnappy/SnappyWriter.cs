@@ -100,7 +100,7 @@ namespace IronSnappy
             if(!_wroteStreamHeader)
             {
                _wroteStreamHeader = true;
-               Encoding.UTF8.GetBytes(Snappy.MagicChunk).AsSpan().CopyTo(_obuf.AsSpan());
+               Snappy.MagicChunk.CopyTo(_obuf.AsSpan());
                obufStart = 0;
             }
 

@@ -7,7 +7,7 @@ namespace IronSnappy
    public static class Snappy
    {
       internal const string MagicBody = "sNaPpY";
-      internal const string MagicChunk = "\xff\x06\x00\x00" + MagicBody;
+      internal static byte[] MagicChunk = new byte[] { 0xff, 0x06, 0x00, 0x00, (byte)'s', (byte)'N', (byte)'a', (byte)'P', (byte)'p', (byte)'Y' };
       internal const int MaxBlockSize = 65536;
       internal const int ChecksumSize = 4;
       private const int ChunkHeaderSize = 4;
